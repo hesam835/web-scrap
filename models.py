@@ -5,7 +5,7 @@ from sqlalchemy import Column,String,Integer
 class Company(Base):
     __tablename__ = "company"
     
-    id = Column(Integer, primary_key=True)
+    id1 = Column(Integer, primary_key=True)
     sales_number = Column(Integer)
     buy_number = Column(Integer)
     sales_valume = Column(Integer)
@@ -15,9 +15,9 @@ class Company(Base):
     
     
 class FirstBoourseMarket(Base):
-    __tablensme__ = "Bourse"
+    __tablename__ = "Bourse"
     
-    id = Column(Integer, primary_key=True)
+    id2 = Column(Integer, primary_key=True)
     last_transaction = Column(Integer)
     final_price = Column(Integer)
     first_price = Column(Integer)

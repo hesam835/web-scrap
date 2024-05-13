@@ -1,0 +1,54 @@
+<html>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">شماره</th>
+            <th scope="col">تعداد خرید</th>
+            <th scope="col">حجم خرید</th>
+            <th scope="col">خرید</th>
+            <th scope="col">تعداد فروش</th>
+            <th scope="col">حجم فروش</th>
+            <th scope="col">فروش</th>
+        </tr>
+        </thead>
+        <thead id='bourseList'>
+        </thead>
+    </table>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col">شماره</th>
+            <th scope="col">قیمت پایانی</th>
+            <th scope="col">اولین قیمت</th>
+            <th scope="col">قیمت دیروز</th>
+            <th scope="col">تعداد معاملات</th>
+            <th scope="col">حجم معاملات</th>
+            <th scope="col">ارزش معاملات</th>
+            <th scope="col">اخرین معامله</th>
+            <th scope="col">ارزش بازار</th>
+        </tr>
+        </thead>
+        <tr id='companyList'>
+
+        </tr>
+    </table>
+    <script>
+        fetch('/template_api_bourse')
+        .then(response => response.json())
+        .then(data => {
+            const companyList = document.getElementById('companyList');
+            companyList.innerHTML=`<td>${data.id2}</td><td>${data.final_price}</td><td>${data.first_price}</td><td>${data.yesterday_price}</td><td>${data.transactions_number}</td><td>${data.volume_transaction}</td><td>${data.transaction_value}</td><td>${data.last_transaction}</td><td>${data.market_value}</td>`
+ 
+        });
+        fetch('/template_api_company')
+        .then(response => response.json())
+        .then(data => {
+            const productList =document.getElementById('bourseList');
+            data.forEach(function(product) {
+            console.log(product)
+            productList.innerHTML+='<tr><td>'+product.id1+'</td><td>'+product.buy_number+'</td><td>'+product.buy_valume+'</td><td>'+product.buy+'</td><td>'+product.sales_number+'</td><td>'+product.sales_valume+'</td><td>'+product.sales+'</td>'
+
+        })});
+    </script>
+</html>
